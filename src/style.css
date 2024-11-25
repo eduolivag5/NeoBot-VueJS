@@ -42,3 +42,13 @@ body > div {
 
 
 
+/* Altura disponible */
+:root {
+  --app-height: 100vh; /* Valor inicial */
+}
+
+#app {
+  height: var(--app-height); /* Usar la altura visible dinámica */
+}
+
+
