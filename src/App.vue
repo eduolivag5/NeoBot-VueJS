@@ -1,15 +1,19 @@
 <template>
   <div class="h-full flex flex-col gap-4 overflow-hidden">
     <!-- Encabezado -->
-    <div class="mb-4">
-      <h1 class="font-bold text-4xl md:text-6xl">NeoBot</h1>
-      <h1 class="font-medium text-gray-300 text-lg md:text-xl">Pregunta a la IA lo que quieras</h1>
+    <div class="flex items-center gap-2 md:gap-4 mb-4">
+      <img src="/logoNeobot.svg" class="h-16 md:h-24 rounded-full" />
+      <div>
+        <h1 class="font-bold text-3xl md:text-5xl">NeoBot</h1>      
+        <h1 class="font-medium text-gray-300 md:text-xl">Pregunta a la IA lo que quieras</h1>
+      </div>
+      
     </div>
 
     <!-- Componente de conversación, ocupa todo el espacio disponible -->
     <div class="flex-1 bg-zinc-900 p-4 overflow-hidden rounded-md">
-      <p class="text-lg font-semibold">Historial de conversación</p>
-      <p v-if="conversation.length === 0" class="text-gray-300">No hay mensajes en el historial de conversación.</p>
+      <p class="text-lg font-semibold">Historial</p>
+      <p v-if="conversation.length === 0" class="text-gray-300 font-extralight">No hay mensajes en esta conversación.</p>
       <div class="mt-2 p-2 h-full pb-8">
         <Conversation :messages="conversation" />
       </div>
