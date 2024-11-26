@@ -41,7 +41,6 @@ body > div {
 }
 
 
-
 /* Altura disponible */
 :root {
   --app-height: 100dvh; /* Altura dinámica basada en el viewport visible */

@@ -1,25 +1,41 @@
 <template>
-    <div class="space-y-2">
-        <input type="text"class="w-full rounded-md bg-zinc-900 p-4 text-white focus:outline-none" v-model="inputText" placeholder="Escribe tu consulta aquí..."></input>
-        
-        <button class="rounded-md bg-indigo-700 hover:bg-indigo-800 w-full font-medium p-2 text-white" @click="handleSubmit">Enviar</button>
+    <div class="mt-auto flex gap-2 p-2 pl-4 bg-zinc-900 rounded-md">
+      <input 
+        type="text" 
+        class="w-full rounded-md text-sm bg-transparent text-white focus:outline-none" 
+        v-model="inputText" 
+        placeholder="Escribe tu consulta aquí..." 
+      />
+      
+      <button 
+        :disabled="loading" 
+        class="disabled:bg-zinc-700 transition duration-200 rounded-md bg-indigo-700 hover:bg-indigo-800 font-medium p-2 px-4 text-white" 
+        @click="handleSubmit"
+      >
+        Enviar
+      </button>
     </div>
-</template>
+  </template>
   
-<script>
-    export default {
+  <script>
+  export default {
+    props: {
+      loading: {
+        type: Boolean,
+        default: false,
+      },
+    },
     data() {
-        return {
-            inputText: '', // Almacena el texto del usuario
-        };
+      return {
+        inputText: '',
+      };
     },
     methods: {
-        // Emitir el texto al componente padre
-        handleSubmit() {
-            this.$emit('submit', this.inputText);
-            this.inputText = ''; // Limpiar el campo de texto
-        }
+      handleSubmit() {
+        this.$emit('submit', this.inputText);
+        this.inputText = '';
+      }
     }
-    };
-</script>
+  };
+  </script>
   
