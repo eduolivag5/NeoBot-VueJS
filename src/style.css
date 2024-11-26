@@ -44,11 +44,14 @@ body > div {
 
 /* Altura disponible */
 :root {
-  --app-height: 100vh; /* Valor inicial */
+  --app-height: 100dvh; /* Altura dinámica basada en el viewport visible */
 }
 
 #app {
-  height: var(--app-height); /* Usar la altura visible dinámica */
+  height: var(--app-height); /* Usa la altura dinámica */
+  min-height: var(--app-height); /* Asegura un mínimo */
+  overflow: hidden; /* Opcional para evitar scroll */
 }
+
 
 
