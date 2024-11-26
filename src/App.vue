@@ -96,18 +96,5 @@ export default {
       }
     },
   },
-  mounted() {
-    this.updateAppHeight();
-    window.addEventListener('resize', this.updateAppHeight);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.updateAppHeight);
-  },
-  methods: {
-    updateAppHeight() {
-      const appHeight = window.innerHeight + 'px';
-      document.documentElement.style.setProperty('--app-height', appHeight);
-    },
-  },
 };
 </script>
