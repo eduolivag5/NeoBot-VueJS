@@ -1,6 +1,5 @@
 <template>
   <div ref="messagesContainer" class="h-full overflow-y-auto pr-4 pb-4">
-    <!-- Contenedor de los mensajes con gap aplicado aquí -->
     <div class="flex flex-col gap-1 mt-2">
       <div
         v-for="(message, index) in messages"
@@ -26,14 +25,14 @@
               </div>
             </template>
             <template v-else>
-              {{ message.content }}
+              <div v-html="formatMessage(message.content)"></div>
             </template>
           </span>
         </div>
       </div>
       
     </div>
-    <!-- Mostrar el mensaje de error si existe -->
+
     <div v-if="errorMessage"class=" text-red-500 text-center text-sm">
       {{ errorMessage }}
     </div>
@@ -41,12 +40,12 @@
 </template>
 
 <script>
-import LoadingDots from './LoadingDots.vue'; // Importa el componente LoadingDots
+import LoadingDots from './LoadingDots.vue';
 
 export default {
   name: "Conversation",
   components: {
-    LoadingDots, // Registra el componente LoadingDots
+    LoadingDots,
   },
   props: {
     messages: {
@@ -54,7 +53,7 @@ export default {
       required: false,
       default: () => [],
     },
-    errorMessage: {  // Propiedad para el mensaje de error
+    errorMessage: {
       type: String,
       required: false,
       default: '',
@@ -75,11 +74,17 @@ export default {
         if (container) {
           container.scrollTo({
             top: container.scrollHeight,
-            behavior: "smooth", // Desplazamiento suave
+            behavior: "smooth",
           });
         }
       });
     },
+    formatMessage(content) {
+      let formattedContent = content.replace(/\n/g, '<br />');
+      formattedContent = formattedContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      return formattedContent;
+    }
   },
   mounted() {
     this.scrollToBottom();
