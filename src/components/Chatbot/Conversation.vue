@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import LoadingDots from './LoadingDots.vue';
+import LoadingDots from '../LoadingDots.vue';
 
 export default {
   name: "Conversation",
