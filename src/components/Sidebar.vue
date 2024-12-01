@@ -1,13 +1,13 @@
 <template>
   <div id="sidebar" class="h-screen flex flex-col">
-    <!-- Sidebar -->
+
     <div class="w-64 h-full shadow-lg flex flex-col">
-      <!-- Logo -->
-      <div class="p-4 flex items-center gap-4 text-lg font-bold">
+
+      <router-link to="/" class="p-4 flex items-center gap-4 text-lg font-bold">
         <img src="/logoNeobot.svg" alt="NeoBot Logo" class="w-8 h-8 rounded-full" />
         <span class="text-3xl">NeoBot</span>
-      </div>
-      <!-- Menu Items -->
+      </router-link>
+
       <nav class="flex-1 p-2 space-y-2">
         <router-link 
           v-for="item in menuItems" 
@@ -21,7 +21,7 @@
           <span>{{ item.label }}</span>
         </router-link>
       </nav>
-      <!-- Footer -->
+
       <div class="p-4 text-center text-sm">
         &copy; 2024 NeoBot
       </div>
