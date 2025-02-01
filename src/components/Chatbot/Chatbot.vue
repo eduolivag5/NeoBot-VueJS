@@ -1,14 +1,14 @@
 <template>
     <div class="h-full flex flex-col gap-4 overflow-hidden">
       <Header />
-      
+      <Models @update:model="selectedModel = $event" />
       
       <div class="flex-1 bg-zinc-900 p-4 overflow-hidden rounded-md">
         <div class="flex justify-between items-center">
           <p class="text-lg font-semibold">Historial</p>
-          <button v-if="conversation.length > 0" @click="showConfirmModal = true" class="flex gap-1 items-center text-sm text-gray-400 hover:text-white">
+          <button v-if="conversation.length > 0" @click="showConfirmModal = true" class="flex gap-1 items-center text-xs md:text-sm text-gray-400 hover:text-white">
             <XCircleIcon class="h-4 w-4" />
-            Eliminar historial
+            Limpiar historial
           </button>
         </div>
         
@@ -38,6 +38,7 @@
   import LoadingDots from '../LoadingDots.vue';
   import { XCircleIcon } from '@heroicons/vue/16/solid';
   import ConfirmModal from './ConfirmModal.vue';
+  import Models from './Models.vue';
   
   const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
   
@@ -48,7 +49,8 @@
       Header,
       LoadingDots,
       XCircleIcon,
-      ConfirmModal
+      ConfirmModal,
+      Models
     },
     data() {
       return {
@@ -56,10 +58,12 @@
         errorMessage: '',
         loading: false,
         showConfirmModal: false,
+        selectedModel: "gpt-4"
       };
     },
     methods: {
       async handleSubmit(inputText) {
+        
         try {
           this.conversation.push({
             role: "user",
@@ -111,6 +115,7 @@
   
           this.loading = false; // Set loading to false
         } catch (error) {
+          console.log(error)
           this.errorMessage = "Hubo un error al realizar la solicitud a la API.";
           this.loading = false;
         }
